@@ -51,7 +51,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 `````
 >>> gtf_file = HTSeq.GFF_Reader( "hg19.refGene.gtf" )
 `````
- ![](G.png) 
+ ![](./schemes/G.png) 
 
  #### -> *GFF_Reader exercise* ####
 
@@ -75,7 +75,7 @@ by changing feature type you can extract the feature type you want to use.
 >>> bam_file = HTSeq.BAM_Reader( "wgEncodeBroadHistoneK562H3k4me1StdAlnRep1.bam" ) 
 
  `````
-# ![](sambam1.3.png) ![](sambam2.2.png)
+# ![](./schemes/sambam1.3.png) ![](./schemes/sambam2.2.png)
 
 ### Genomic Intervals ###
 
@@ -108,7 +108,7 @@ chr1:[11699,11735)/-
 
 Genomic arrays holds the information associated with a genomic position or genomic interval.
 
-# ![](chromlen.png)  
+# ![](./schemes/chromlen.png)  
 
 1. Create a chromlength object
 `````
@@ -120,14 +120,14 @@ Genomic arrays holds the information associated with a genomic position or genom
 >>> iv = HTSeq.GenomicInterval( "chr1", 100, 120, "." ) 
 >>> ga[iv] = 5
 `````
-# ![](chr1.png) 
+# ![](./schemes/chr1.png) 
 
 3. Add different value for another interval
 ````` 
 >>> iv = HTSeq.GenomicInterval( "chr1", 117, 130, "." ) 
 >>> ga[iv] += 3 
 `````
-# ![](c2.png)
+# ![](./schemes/c2.png)
 
 4. Check the values in the interval 
 
@@ -152,7 +152,7 @@ chr1:[130,140)/. 0
 
 ## *Summary* ##
 
- ![](summary.png) 
+ ![](./schemes/summary.png) 
 
 
 **Run the script:** `$python TSSplot.py`
