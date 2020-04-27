@@ -44,7 +44,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ## Reading Files ##
 
-# ![mer](HTSeq_readers.png)
+# ![mer](./schemes/HTSeq_readers.png)
 
 ### **Reading GTF Files (HTSeq.GFF_Reader )** ### 
 
