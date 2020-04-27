@@ -35,16 +35,10 @@ Type "help", "copyright", "credits" or "license" for more information.
 `````
 >>> import HTSeq
 `````
-5. Read the files
-`````
->>> bam_file = HTSeq.BAM_Reader( "wgEncodeBroadHistoneK562H3k4me1StdAlnRep1.bam" )
->>> gtf_file = HTSeq.GFF_Reader( "hg19.refGene.gtf" )
-`````
-
 
 ## Reading Files ##
 
-# ![mer](./schemes/HTSeq_readers.png)
+# ![](./schemes/HTSeq_readers.png)
 
 ### **Reading GTF Files (HTSeq.GFF_Reader )** ### 
 
@@ -53,7 +47,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 `````
  ![](./schemes/G.png) 
 
- #### -> *GFF_Reader exercise* ####
+
 
 When used in a for loop, it generates an iterator of objects representing the each line in gtf file. Here, we use the islice function from itertools to cut after 100 lines in gtf file.
 
@@ -82,9 +76,9 @@ by changing feature type you can extract the feature type you want to use.
 Genomic interval object contains chromosome number, start&stop positions and strand information inside as schemed aboved figure.
 
 `````
->>> for aln in bam_file:
+>>> for aln in itertools.islice(bam_file, 100):                                            
 ...      if aln.aligned:
-...         print(aln.iv) 
+...         print(aln.iv)
 chr1:[10434,10470)/-
 chr1:[11045,11081)/-
 chr1:[11473,11509)/-
@@ -93,7 +87,7 @@ chr1:[11596,11632)/+
 chr1:[11613,11649)/+
 chr1:[11699,11735)/-
 
->>> for aln in bam_file:
+>>> for aln in itertools.islice(bam_file, 100):
 ...      if aln.aligned:
 ...         print(aln.iv.start)
 10434
@@ -110,7 +104,7 @@ Genomic arrays holds the information associated with a genomic position or genom
 
 # ![](./schemes/chromlen.png)  
 
-1. Create a chromlength object
+1. Create a chromlngth object
 `````
 >>> chromlngth = { 'chr1': 3000, 'chr2': 2000, 'chr1': 1000 } 
 `````
@@ -186,9 +180,11 @@ halfwinwidth = 3000
     
 profile = numpy.zeros(2*halfwinwidth, dtype='i')
 
+# ndarray is a (usually fixed-size) multidimensional container of items of the same type and size. fromiter() function of Python numpy class creates a ndarray by using an iterable object. It returns a one-dimensional ndarray object.
+
 for p in tsspos:
    window = HTSeq.GenomicInterval(p.chrom, p.pos - halfwinwidth, p.pos + halfwinwidth, ".")
-   wincvg = numpy.fromiter(coverage[window], dtype='i', count=2*halfwinwidth)
+   wincvg = numpy.fromiter(coverage[window], dtype='i', count=2*halfwinwidth) 
    if p.strand == "+":
       profile += wincvg
    else:
